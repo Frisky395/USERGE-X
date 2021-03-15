@@ -256,7 +256,7 @@ class Bot_Alive:
     @staticmethod
     def alive_default_imgs() -> str:
         alive_imgs = [
-            "https://telegra.ph/file/468c9cbf1b7e011d82269.jpg",
+            "https://telegra.ph/file/a05a78a1032625140c16f.jpg",
         ]
         return rand_array(alive_imgs)
 
