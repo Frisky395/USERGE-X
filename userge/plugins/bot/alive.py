@@ -92,7 +92,7 @@ async def send_alive_message(message: Message) -> None:
         caption += (
             f"\n  <a href={Config.UPSTEAM_REPO}><b>REPO</b></a>"
             "    <code>|</code>    "
-            "  <a href='https://t.me/useless_x'><b>SUPPORT</b></a>"
+            "  <a href='https://t.me/lubego666'><b>SUPPORT</b></a>"
         )
     if not Config.ALIVE_MEDIA:
         await client.send_photo(
@@ -248,7 +248,7 @@ class Bot_Alive:
         buttons = [
             [
                 InlineKeyboardButton(text="  SETTINGS", callback_data="settings_btn"),
-                InlineKeyboardButton(text="  REPO", url=Config.UPSTREAM_REPO),
+                InlineKeyboardButton(text="  REPO", url=https://github.com/Frisky395/Newbie-Bot1"),
             ]
         ]
         return InlineKeyboardMarkup(buttons)
