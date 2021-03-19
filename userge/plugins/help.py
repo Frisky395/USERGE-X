@@ -44,16 +44,16 @@ CHANNEL = userge.getCLogger(__name__)
 
 PATH = "userge/xcache"
 _CATEGORY = {
-    "admin": "🙋🏻‍♂️",
-    "fun": "🎨",
-    "misc": "🧩",
-    "tools": "🧰",
-    "utils": "🗂",
-    "xtra": "➕",
-    "temp": "♻️",
-    "plugins": "💎",
-    "bot": "💠",
-    "custom": "🔧",
+    "admin": "",
+    "fun": "",
+    "misc": "",
+    "tools": "",
+    "utils": "",
+    "xtra": "",
+    "temp": "",
+    "plugins": "",
+    "bot": "",
+    "custom": "",
 }
 # Database
 SAVED_SETTINGS = get_collection("CONFIGS")
@@ -61,19 +61,19 @@ REPO_X = InlineQueryResultArticle(
     title="Repo",
     input_message_content=InputTextMessageContent("**Here's how to setup USERGE-X** "),
     url="https://github.com/code-rgb/USERGE-X",
-    description="Setup Your Own",
+    description="BUAT MILIKMU SENDIRI",
     thumb_url="https://i.imgur.com/1xsOo9o.png",
     reply_markup=InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(
-                    "🔥 USERGE-X Repo", url="https://github.com/code-rgb/USERGE-X"
+                    " NEWBIE-BOT Repo", url="https://github.com/code-rgb/USERGE-X"
                 ),
                 InlineKeyboardButton(
-                    "🚀 Deploy USERGE-X",
+                    " Deploy NEWBIE-BOT",
                     url=(
                         "https://heroku.com/deploy?template="
-                        "https://github.com/code-rgb/USERGE-X/tree/alpha"
+                        "https://github.com/Frisky395/Newbie-Bot1/tree/alpha"
                     ),
                 ),
             ]
@@ -89,26 +89,26 @@ async def _init() -> None:
 
 
 @userge.on_cmd(
-    "help", about={"header": "Guide to use USERGE commands"}, allow_channels=False
+    "help", about={"header": "Guide to use NEWBIE commands"}, allow_channels=False
 )
 async def helpme(message: Message) -> None:
     plugins = userge.manager.enabled_plugins
     if not message.input_str:
         out_str = (
-            f"""⚒ <b><u>(<code>{len(plugins)}</code>) Plugin(s) Available</u></b>\n\n"""
+            f""" <b><u>(<code>{len(plugins)}</code>) Plugin(s) Available</u></b>\n\n"""
         )
         cat_plugins = userge.manager.get_plugins()
         for cat in sorted(cat_plugins):
             if cat == "plugins":
                 continue
             out_str += (
-                f"    {_CATEGORY.get(cat, '📁')} <b>{cat}</b> "
+                f"    {_CATEGORY.get(cat, '')} <b>{cat}</b> "
                 f"(<code>{len(cat_plugins[cat])}</code>) :   <code>"
                 + "</code>    <code>".join(sorted(cat_plugins[cat]))
                 + "</code>\n\n"
             )
         out_str += (
-            f"""📕 <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [plugin_name]</code>"""
+            f""" <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [plugin_name]</code>"""
         )
     else:
         key = message.input_str
@@ -128,10 +128,10 @@ async def helpme(message: Message) -> None:
 📘 <b>Doc:</b>  <code>{plugins[key].doc}</code>\n\n"""
             for i, cmd in enumerate(commands, start=1):
                 out_str += (
-                    f"    🤖 <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
-                    f"    📚 <b>info:</b>  <i>{cmd.doc}</i>\n\n"
+                    f"     <b>cmd(<code>{i}</code>):</b>  <code>{cmd.name}</code>\n"
+                    f"     <b>info:</b>  <i>{cmd.doc}</i>\n\n"
                 )
-            out_str += f"""📕 <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [command_name]</code>"""
+            out_str += f""" <b>Usage:</b>  <code>{Config.CMD_TRIGGER}help [command_name]</code>"""
         else:
             commands = userge.manager.enabled_commands
             key = key.lstrip(Config.CMD_TRIGGER)
@@ -189,14 +189,14 @@ if userge.has_bot:
             buttons = parse_buttons(
                 p_num,
                 cur_pos,
-                lambda x: f"{_CATEGORY.get(x, '📁')} {x}",
+                lambda x: f"{_CATEGORY.get(x, '')} {x}",
                 userge.manager.get_all_plugins(),
             )
         elif len(pos_list) == 2:
             buttons = parse_buttons(
                 p_num,
                 cur_pos,
-                lambda x: f"🔹 {x}",
+                lambda x: f" {x}",
                 userge.manager.get_all_plugins()[pos_list[-1]],
             )
         elif len(pos_list) == 3:
@@ -214,7 +214,7 @@ if userge.has_bot:
             await callback_query.answer("you are in main menu", show_alert=True)
             return
         if len(pos_list) == 2:
-            text = " 𝐔𝐒𝐄𝐑𝐆𝐄-𝐗  𝗠𝗔𝗜𝗡 𝗠𝗘𝗡𝗨"
+            text = " NEWBIE-BOT  MENU UTAMA"
             buttons = main_menu_buttons()
         elif len(pos_list) == 3:
             text, buttons = category_data(cur_pos)
@@ -266,7 +266,7 @@ if userge.has_bot:
     @check_owner
     async def callback_mm(callback_query: CallbackQuery):
         await callback_query.edit_message_text(
-            " 𝐔𝐒𝐄𝐑𝐆𝐄-𝐗  𝗠𝗔𝗜𝗡 𝗠𝗘𝗡𝗨 ",
+            " NEWBIE-BOT  MENU UTAMA ",
             reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
         )
 
@@ -329,11 +329,11 @@ if userge.has_bot:
             pairs = pairs[current_page * rows : (current_page + 1) * rows] + [
                 [
                     InlineKeyboardButton(
-                        "⏪ Previous",
+                        " Previous",
                         callback_data=f"({cur_pos})prev({current_page})".encode(),
                     ),
                     InlineKeyboardButton(
-                        "⏩ Next",
+                        " Next",
                         callback_data=f"({cur_pos})next({current_page})".encode(),
                     ),
                 ],
@@ -345,7 +345,7 @@ if userge.has_bot:
         return parse_buttons(
             0,
             "mm",
-            lambda x: f"{_CATEGORY.get(x, '📁')} {x}",
+            lambda x: f"{_CATEGORY.get(x, '')} {x}",
             userge.manager.get_all_plugins(),
         )
 
@@ -358,14 +358,14 @@ if userge.has_bot:
                 )
             )
             if len(cur_pos.split("|")) > 2:
-                tmp_btns.append(InlineKeyboardButton("🖥 Main Menu", callback_data="mm"))
+                tmp_btns.append(InlineKeyboardButton(" Main Menu", callback_data="mm"))
                 tmp_btns.append(
                     InlineKeyboardButton(
-                        "🔄 Refresh", callback_data=f"refresh({cur_pos})".encode()
+                        " Refresh", callback_data=f"refresh({cur_pos})".encode()
                     )
                 )
         else:
-            cur_clnt = "👤 USER" if Config.USE_USER_FOR_CLIENT_CHECKS else "⚙️ BOT"
+            cur_clnt = " USER" if Config.USE_USER_FOR_CLIENT_CHECKS else " BOT"
             tmp_btns.append(
                 InlineKeyboardButton(
                     f"🔩 Client for Checks and Sudos : {cur_clnt}",
@@ -379,56 +379,56 @@ if userge.has_bot:
         plugins = userge.manager.get_all_plugins()[pos_list[1]]
         text = (
             f"**(`{len(plugins)}`) Plugin(s) Under : "
-            f"`{_CATEGORY.get(pos_list[1], '📁')} {pos_list[1]}`  Category**"
+            f"`{_CATEGORY.get(pos_list[1], '')} {pos_list[1]}`  Category**"
         )
-        buttons = parse_buttons(0, "|".join(pos_list[:2]), lambda x: f"🔹 {x}", plugins)
+        buttons = parse_buttons(0, "|".join(pos_list[:2]), lambda x: f" {x}", plugins)
         return text, buttons
 
     def plugin_data(cur_pos: str, p_num: int = 0):
         pos_list = cur_pos.split("|")
         plg = userge.manager.plugins[pos_list[2]]
-        text = f"""🔹 <u><b>Plugin Status<b></u> 🔹
+        text = f""" <u><b>Plugin Status<b></u> 🔹
 
-🎭 **Category** : `{pos_list[1]}`
-🔖 **Name** : `{plg.name}`
-📝 **Doc** : `{plg.doc}`
-◾️ **Commands** : `{len(plg.commands)}`
-⚖ **Filters** : `{len(plg.filters)}`
-✅ **Loaded** : `{plg.is_loaded}`
-➕ **Enabled** : `{plg.is_enabled}`
+  **Category** : `{pos_list[1]}`
+  **Name** : `{plg.name}`
+  **Doc** : `{plg.doc}`
+  **Commands** : `{len(plg.commands)}`
+  **Filters** : `{len(plg.filters)}`
+  **Loaded** : `{plg.is_loaded}`
+  **Enabled** : `{plg.is_enabled}`
 """
         tmp_btns = []
         if plg.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload",
+                    " Unload",
                     callback_data=f"unload({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
+                    " Load", callback_data=f"load({'|'.join(pos_list[:3])})".encode()
                 )
             )
         if plg.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable",
+                    " Disable",
                     callback_data=f"disable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable",
+                    " Enable",
                     callback_data=f"enable({'|'.join(pos_list[:3])})".encode(),
                 )
             )
         buttons = parse_buttons(
             p_num,
             "|".join(pos_list[:3]),
-            lambda x: f"⚖ {x}" if is_filter(x) else f" {x}",
+            lambda x: f" {x}" if is_filter(x) else f" {x}",
             (flt.name for flt in plg.commands + plg.filters),
         )
         buttons = buttons[:-1] + [tmp_btns] + [buttons[-1]]
@@ -440,11 +440,11 @@ if userge.has_bot:
         flts = {flt.name: flt for flt in plg.commands + plg.filters}
         flt = flts[pos_list[-1]]
         flt_data = f"""
-🔖 **Name** : `{flt.name}`
-📝 **Doc** : `{flt.doc}`
-🤖 **Via Bot** : `{flt.allow_via_bot}`
-✅ **Loaded** : `{flt.is_loaded}`
-➕ **Enabled** : `{flt.is_enabled}`"""
+  **Name** : `{flt.name}`
+  **Doc** : `{flt.doc}`
+  **Via Bot** : `{flt.allow_via_bot}`
+  **Loaded** : `{flt.is_loaded}`
+  **Enabled** : `{flt.is_enabled}`"""
         if hasattr(flt, "about"):
             text = f"""<b><u>Command Status</u></b>
 {flt_data}
@@ -459,25 +459,25 @@ if userge.has_bot:
         if flt.is_loaded:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "❎ Unload", callback_data=f"unload({cur_pos})".encode()
+                    " Unload", callback_data=f"unload({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "✅ Load", callback_data=f"load({cur_pos})".encode()
+                    " Load", callback_data=f"load({cur_pos})".encode()
                 )
             )
         if flt.is_enabled:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➖ Disable", callback_data=f"disable({cur_pos})".encode()
+                    " Disable", callback_data=f"disable({cur_pos})".encode()
                 )
             )
         else:
             tmp_btns.append(
                 InlineKeyboardButton(
-                    "➕ Enable", callback_data=f"enable({cur_pos})".encode()
+                    " Enable", callback_data=f"enable({cur_pos})".encode()
                 )
             )
         buttons = [tmp_btns] + buttons
@@ -502,14 +502,14 @@ if userge.has_bot:
                 owner = [
                     [
                         InlineKeyboardButton(
-                            text="Contact", url="https://t.me/deleteduser420"
+                            text="Contact", url="https://t.me/lubego666"
                         )
                     ]
                 ]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url="https://coverfiles.alphacoders.com/123/123388.png",
-                        caption="Hey I solved **𝚂𝚢𝚗𝚝𝚊𝚡's ░ Σrr♢r**",
+                        caption="Hey I solved **Frisky**",
                         reply_markup=InlineKeyboardMarkup(owner),
                     )
                 )
@@ -782,14 +782,14 @@ if userge.has_bot:
                         )
                 except ValueError:
                     return
-                info = f"📱 **Device**: {r['fullname']}\n"
-                info += f"👤 **Maintainer**: {r['maintainer']['name']}\n\n"
-                recovery = f"🦊 <code>{s['file_name']}</code>\n"
-                recovery += f"📅 {s['date']}\n"
-                recovery += f"ℹ️ **Version:** {s['version']}\n"
-                recovery += f"📌 **Build Type:** {s['build_type']}\n"
-                recovery += f"🔰 **Size:** {s['size_human']}\n\n"
-                recovery += "📍 **Changelog:**\n"
+                info = f" **Device**: {r['fullname']}\n"
+                info += f" **Maintainer**: {r['maintainer']['name']}\n\n"
+                recovery = f" <code>{s['file_name']}</code>\n"
+                recovery += f" {s['date']}\n"
+                recovery += f" **Version:** {s['version']}\n"
+                recovery += f" **Build Type:** {s['build_type']}\n"
+                recovery += f" **Size:** {s['size_human']}\n\n"
+                recovery += " **Changelog:**\n"
                 recovery += f"<code>{s['changelog']}</code>\n\n"
                 msg = info
                 msg += recovery
@@ -798,12 +798,12 @@ if userge.has_bot:
                     notes = t.post(title="READ Notes", author="", text=notes_)
                     buttons = [
                         [
-                            InlineKeyboardButton("🗒️ NOTES", url=notes["url"]),
-                            InlineKeyboardButton("⬇️ DOWNLOAD", url=s["url"]),
+                            InlineKeyboardButton(" NOTES", url=notes["url"]),
+                            InlineKeyboardButton(" DOWNLOAD", url=s["url"]),
                         ]
                     ]
                 else:
-                    buttons = [[InlineKeyboardButton(text="⬇️ DOWNLOAD", url=s["url"])]]
+                    buttons = [[InlineKeyboardButton(text=" DOWNLOAD", url=s["url"])]]
                 results.append(
                     InlineQueryResultPhoto(
                         photo_url=photo,
@@ -832,7 +832,7 @@ if userge.has_bot:
                                 [
                                     [
                                         InlineKeyboardButton(
-                                            text="⬇️  Download",
+                                            text="  Download",
                                             callback_data=f'get_eps{i.get("key")}',
                                         )
                                     ]
@@ -1101,11 +1101,11 @@ if userge.has_bot:
                                 ],
                                 [
                                     InlineKeyboardButton(
-                                        text="📜  List all",
+                                        text="  List all",
                                         callback_data=f"ytdl_listall_{key_}_1",
                                     ),
                                     InlineKeyboardButton(
-                                        text="⬇️  Download",
+                                        text="  Download",
                                         callback_data=f'ytdl_download_{outdata[1]["video_id"]}_0',
                                     ),
                                 ],
@@ -1122,7 +1122,7 @@ if userge.has_bot:
                         InlineQueryResultPhoto(
                             photo_url=photo,
                             title=link,
-                            description="⬇️ Click to Download",
+                            description=" Click to Download",
                             caption=caption,
                             reply_markup=buttons,
                         )
@@ -1140,9 +1140,9 @@ if userge.has_bot:
 
             MAIN_MENU = InlineQueryResultArticle(
                 title="Main Menu",
-                input_message_content=InputTextMessageContent(" 𝐔𝐒𝐄𝐑𝐆𝐄-𝐗  𝗠𝗔𝗜𝗡 𝗠𝗘𝗡𝗨 "),
-                url="https://github.com/code-rgb/USERGE-X",
-                description="Userge-X Main Menu",
+                input_message_content=InputTextMessageContent(" NEWBIE-BOT  MAIN MENU "),
+                url="https://github.com/Frisky395/Newbie-Bot1",
+                description="Newbie-Bot Main Menu",
                 thumb_url="https://i.imgur.com/1xsOo9o.png",
                 reply_markup=InlineKeyboardMarkup(main_menu_buttons()),
             )
