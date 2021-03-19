@@ -17,11 +17,11 @@ from userge import Message, userge
 
 @userge.on_cmd("p$", about={"header": "Memberi salam"})
 async def p_(message: Message):
-    """Salam"""
+    """p_"""
     await check_and_send(message, "`Assalamualaikum`")
 
 
 @userge.on_cmd("l$", about={"header": "Memberi salam"})
 async def l_(message: Message):
-    """Salam"""
+    """l_"""
     await check_and_send(message, "`Wa'alaikumussalam`")
