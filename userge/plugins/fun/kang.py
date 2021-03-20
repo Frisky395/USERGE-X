@@ -213,7 +213,7 @@ async def kang_(message: Message):
             out = (
                 "__kanged__"
                 if "-s" in message.flags
-                else f"[kanged](t.me/addstickers/{packname)"
+                else f"[kanged](t.me/addstickers/{packname})"
             )
             await message.edit(f"**Sticker** {out}**!**")
         if os.path.exists(str(photo)):
