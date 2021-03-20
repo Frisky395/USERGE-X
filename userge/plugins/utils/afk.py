@@ -47,7 +47,7 @@ async def active_afk(message: Message) -> None:
     REASON = message.input_str
     await asyncio.gather(
         CHANNEL.log(f"You went AFK! : `{REASON}`"),
-        message.edit("`You went AFK!`", del_in=1),
+        message.edit("`FRISKY telah AFK!`", del_in=1000),
         AFK_COLLECTION.drop(),
         SAVED_SETTINGS.update_one(
             {"_id": "AFK"},
@@ -89,8 +89,8 @@ async def handle_afk_incomming(message: Message) -> None:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             if REASON:
                 out_str = (
-                    f"I'm still **AFK**.\nReason: <code>{REASON}</code>\n"
-                    f"Last Seen: `{afk_time} ago`"
+                    f"Frisky masih **AFK**.\nAlasan: <code>{REASON}</code>\n"
+                    f"Terakhir dilihat: `{afk_time} yang lalu`"
                 )
             else:
                 out_str = choice(AFK_REASONS)
@@ -102,8 +102,8 @@ async def handle_afk_incomming(message: Message) -> None:
     else:
         if REASON:
             out_str = (
-                f"I'm **AFK** right now.\nReason: <code>{REASON}</code>\n"
-                f"Last Seen: `{afk_time} ago`"
+                f"Frisky sedang **AFK** sekarang,tunggulah nanti.\nAlasan: <code>{REASON}</code>\n"
+                f"Terakhir dilihat: `{afk_time} yang lalu`"
             )
         else:
             out_str = choice(AFK_REASONS)
@@ -158,26 +158,26 @@ async def handle_afk_outgoing(message: Message) -> None:
         g_count = 0
         for pcount, gcount, men in USERS.values():
             if pcount:
-                p_msg += f"👤 {men} ✉️ **{pcount}**\n"
+                p_msg += f" {men}  **{pcount}**\n"
                 p_count += pcount
             if gcount:
-                g_msg += f"👥 {men} ✉️ **{gcount}**\n"
+                g_msg += f" {men}  **{gcount}**\n"
                 g_count += gcount
         coro_list.append(
             replied.edit(
-                f"`You recieved {p_count + g_count} messages while you were away. "
-                f"Check log for more details.`\n\n**AFK time** : __{afk_time}__",
+                f"`Kamu menerima {p_count + g_count} pesan jetika kamu tidak ada. "
+                f"Periksa log untuk detail informasi.`\n\n**waktu AFK** : __{afk_time}__",
                 del_in=3,
             )
         )
         out_str = (
-            f"You've recieved **{p_count + g_count}** messages "
-            + f"from **{len(USERS)}** users while you were away!\n\n**AFK time** : __{afk_time}__\n"
+            f"Kamu menerima **{p_count + g_count}** pesan "
+            + f"dari **{len(USERS)}** orang,ketika kamu tidak ada!\n\n**waktu AFK** : __{afk_time}__\n"
         )
         if p_count:
-            out_str += f"\n**{p_count} Private Messages:**\n\n{p_msg}"
+            out_str += f"\n**{p_count} pesan pribadi:**\n\n{p_msg}"
         if g_count:
-            out_str += f"\n**{g_count} Group Messages:**\n\n{g_msg}"
+            out_str += f"\n**{g_count} pesan grup:**\n\n{g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:
