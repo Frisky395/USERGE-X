@@ -98,6 +98,18 @@ async def facepalm_(message: Message):
     await check_and_send(message, "🤦‍♂")
 
 
+@userge.on_cmd("p$", about={"header": memberi salam"})
+async def p_(message: Message):
+    """Beri salam salam"""
+    await check_and_send(message, "`Assalamu'alaikum`")
+
+
+@userge.on_cmd("l$", about={"header": "jawab salam"})
+async def l_(message: Message):
+    """Jawab salam"""
+    await check_and_send(message, "`Wa'alaikumssalam`")
+
+
 @userge.on_cmd("cry$", about={"header": "y u du dis, i cri"})
 async def cry_(message: Message):
     """cry"""
