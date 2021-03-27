@@ -111,7 +111,7 @@ async def kang_(message: Message):
         except StickersetInvalid:
             pass
         if exist is not False:
-            async with userge.conversation("Stickers", limit=30) as conv:
+            async with userge.conversation("Stickers", limit=50) as conv:
                 try:
                     await conv.send_message("/addsticker")
                 except YouBlockedUser:
@@ -120,7 +120,7 @@ async def kang_(message: Message):
                 await conv.get_response(mark_read=True)
                 await conv.send_message(packname)
                 msg = await conv.get_response(mark_read=True)
-                limit = "50" if is_anim else "120"
+                limit = "80" if is_anim else "220"
                 while limit in msg.text:
                     pack += 1
                     packname = f"a{user.id}_by_userge_{pack}"
