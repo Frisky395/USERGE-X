@@ -224,12 +224,12 @@ class Bot_Alive:
     @staticmethod
     def alive_info() -> str:
         alive_info_ = f"""
-<b>Sudah ku bilang aku tak suka menunggu</b>
+<b>Ahaha</b>
 ━━━━━━━━━━━━━━━━━━━━━━
-  ※<b>User :</b>    <a href="https://telegram.dog/lubego666"><b>Frisky</a>
-  ※<b>Python version :</b>    <code>{versions.__python_version__}</code>
-  ※<b>Pyrogram version :</b>    <code>{versions.__pyro_version__}</code>
-  ※<b>Userge X version :</b>    <code>{get_version()}</code>
+  •<b>User :</b>    <a href="https://telegram.dog/lubego666"><b>Frisky</a>
+  •<b>Python version :</b>    <code>{versions.__python_version__}</code>
+  •<b>Pyrogram version :</b>    <code>{versions.__pyro_version__}</code>
+  •<b>Userge X version :</b>    <code>{get_version()}</code>
 ━━━━━━━━━━━━━━━━━━━━━━
 <b>MODE :{Bot_Alive._get_mode()}</b>  <code>|</code>  <b>UPTIME: {userge.uptime}</b>
 """
