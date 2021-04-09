@@ -20,7 +20,7 @@ from userge import Message, userge
 )
 async def purge_(message: Message):
     """purge from replied message"""
-    await message.edit("`purging ...`")
+    await message.edit("`Menghapus ...`")
     from_user_id = None
     if message.filtered_input_str:
         from_user_id = (await message.client.get_users(message.filtered_input_str)).id
@@ -77,7 +77,7 @@ async def purge_(message: Message):
         purged_messages_count += len(list_of_messages)
     end_t = datetime.datetime.now()
     time_taken_s = (end_t - start_t).seconds
-    out = f"<u>purged</u> {purged_messages_count} messages in {time_taken_s} seconds."
+    out = f"<u>Menghapus</u> {purged_messages_count} pesan dalam waktu {time_taken_s} detik."
     await message.edit(out, del_in=3)
 
 
@@ -94,7 +94,7 @@ async def purge_(message: Message):
 )
 async def purgeme_(message: Message):
     """purge given no. of your messages"""
-    await message.edit("`purging ...`")
+    await message.edit("`Menghapus ...`")
     if not (message.input_str and message.input_str.isdigit()):
         return await message.err(
             "Provide a valid number of message to delete", del_in=3
@@ -130,5 +130,5 @@ async def purgeme_(message: Message):
 
     end_t = datetime.datetime.now()
     time_taken_s = (end_t - start_t).seconds
-    out = f"<u>purged</u> {len(del_list_)} messages in {time_taken_s} seconds."
+    out = f"<u>Menghapus</u> {len(del_list_)} pesan dalam waktu {time_taken_s} detik."
     await message.edit(out, del_in=3)
