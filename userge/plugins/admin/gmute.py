@@ -35,7 +35,7 @@ LOG = userge.getLogger(__name__)
 )
 async def gmute_user(msg: Message):
     """ Mute a user globally """
-    await msg.edit("`Globally Muting this User...`")
+    await msg.edit("`Membisukan pengguna secara Global...`")
     user_id, reason = msg.extract_user_and_text
     if not user_id:
         await msg.edit(
@@ -76,9 +76,9 @@ async def gmute_user(msg: Message):
             {"firstname": firstname, "user_id": user_id, "reason": reason}
         ),
         msg.edit(
-            r"\\**#GMuted_User**//"
-            f"\n\n**First Name:** [{firstname}](tg://user?id={user_id})\n"
-            f"**User ID:** `{user_id}`\n**Reason:** `{reason}`"
+            r"\\**#Pengguna dibisukan secara Global**//"
+            f"\n\n**Nama:** [{firstname}](tg://user?id={user_id})\n"
+            f"**ID pengguna:** `{user_id}`\n**Alasan:** `{reason}`"
         ),
     )
     chats = await userge.get_common_chats(user_id)
