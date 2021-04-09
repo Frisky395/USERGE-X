@@ -136,7 +136,7 @@ async def lock_perm(message: Message):
     if lock_type == "all":
         try:
             await message.client.set_chat_permissions(chat_id, ChatPermissions())
-            await message.edit("**🔒 Locked all permission from this Chat!**", del_in=5)
+            await message.edit("`Mengunci semua akses diobrolan ini`", del_in=10)
             await CHANNEL.log(
                 f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
                 f"PERMISSIONS: `All Permissions`"
@@ -182,7 +182,7 @@ async def lock_perm(message: Message):
                 can_pin_messages=pin,
             ),
         )
-        await message.edit(f"**🔒 Locked {perm} for this chat!**", del_in=5)
+        await message.edit(f"**🔒 Mengunci akses {perm} untuk obrolan ini!**", del_in=10)
         await CHANNEL.log(
             f"#LOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
             f"PERMISSIONS: `{perm} Permission`"
@@ -224,7 +224,7 @@ async def unlock_perm(message: Message):
     unlock_type = message.input_str
     chat_id = message.chat.id
     if not unlock_type:
-        await message.err(r"I Can't Unlock Nothing! (－‸ლ)")
+        await message.err(r"`Tidak ada yang barus dibuka`")
         return
     if unlock_type == "all":
         try:
@@ -245,7 +245,7 @@ async def unlock_perm(message: Message):
                 ),
             )
             await message.edit(
-                "**🔓 Unlocked all permission from this Chat!**", del_in=5
+                "** Membuka semua akses dioborolan ini!**", del_in=5
             )
             await CHANNEL.log(
                 f"#UNLOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
@@ -292,7 +292,7 @@ async def unlock_perm(message: Message):
                 can_pin_messages=upin,
             ),
         )
-        await message.edit(f"**🔓 Unlocked {uperm} for this chat!**", del_in=5)
+        await message.edit(f"**🔓 Membuka akses {uperm} pada obrolan ini!**", del_in=5)
         await CHANNEL.log(
             f"#UNLOCK\n\nCHAT: `{message.chat.title}` (`{chat_id}`)\n"
             f"PERMISSIONS: `{uperm} Permission`"
