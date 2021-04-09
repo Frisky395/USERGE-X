@@ -91,7 +91,7 @@ async def spam_protect_(message: Message):
 )
 async def gban_user(message: Message):
     """ ban a user globally """
-    await message.edit("`GBanning...`")
+    await message.edit("**Sedang melalukan Global Banned...**")
     user_id, reason = message.extract_user_and_text
     if not user_id:
         await message.edit(
@@ -105,8 +105,8 @@ async def gban_user(message: Message):
     firstname = get_mem["fname"]
     if not reason:
         await message.edit(
-            f"**#Aborted**\n\n**Gbanning** of {mention_html(user_id, firstname)} "
-            "Aborted coz No reason of gban provided by banner",
+            f"**#Dibatalkan**\n\n**Global Banned** of {mention_html(user_id, firstname)} "
+            "Dibatalkan karena tidak menyertakan alasan",
             del_in=5,
         )
         return
@@ -124,15 +124,15 @@ async def gban_user(message: Message):
     found = await GBAN_USER_BASE.find_one({"user_id": user_id})
     if found:
         await message.edit(
-            "**#Already_GBanned**\n\nUser Already Exists in My Gban List.\n"
-            f"**Reason For GBan:** `{found['reason']}`",
+            "**#Sudah terBanned Global**\n\nPengguna sudah ada dalam daftar Global Banned.\n"
+            f"**Alasan Global Banned:** `{found['reason']}`",
             del_in=5,
         )
         return
     await message.edit(
-        r"\\**#GBanned_User**//"
-        f"\n\n**First Name:** {mention_html(user_id, firstname)}\n"
-        f"**User ID:** `{user_id}`\n**Reason:** `{reason}`"
+        r"\\**#Global Banned pengguna**//"
+        f"\n\n**Nama:** {mention_html(user_id, firstname)}\n"
+        f"**ID pengguna:** `{user_id}`\n**Alasan:** `{reason}`"
     )
     # TODO: can we add something like "GBanned by {any_sudo_user_fname}"
     if message.client.is_bot:
@@ -180,10 +180,10 @@ async def gban_user(message: Message):
 )
 async def ungban_user(message: Message):
     """ unban a user globally """
-    await message.edit("`UnGBanning...`")
+    await message.edit("Membuka Global Banned...")
     user_id, _ = message.extract_user_and_text
     if not user_id:
-        await message.err("user-id not found")
+        await message.err("ID pengguna tidak ditemukan")
         return
     try:
         get_mem = await message.client.get_user_dict(user_id)
@@ -191,13 +191,13 @@ async def ungban_user(message: Message):
         await GBAN_USER_BASE.find_one_and_delete({"user_id": user_id})
         deleted_user_ = f"\nRemoved [Deleted Account !](tg://openmessage?user_id={user_id}) Successfully"
         return await message.edit(
-            r"\\**#UnGbanned_User**//" + "\n" + deleted_user_, log=__name__
+            r"\\**#Membuka Global Banned pada pengguna ini**//" + "\n" + deleted_user_, log=__name__
         )
     firstname = get_mem["fname"]
     user_id = get_mem["id"]
     found = await GBAN_USER_BASE.find_one_and_delete({"user_id": user_id})
     if not found:
-        await message.err("User Not Found in My Gban List")
+        await message.err("Pengguna tidak ada dalam daftar Global Banned")
         return
     if "chat_ids" in found:
         for chat_id in found["chat_ids"]:
@@ -212,9 +212,9 @@ async def ungban_user(message: Message):
             except (ChatAdminRequired, UserAdminInvalid, ChannelInvalid):
                 pass
     await message.edit(
-        r"\\**#UnGbanned_User**//"
-        f"\n\n**First Name:** {mention_html(user_id, firstname)}\n"
-        f"**User ID:** `{user_id}`"
+        r"\\**#Membuka Global Banned pengguna**//"
+        f"\n\n**Nama:** {mention_html(user_id, firstname)}\n"
+        f"**ID pengguna:** `{user_id}`"
     )
     LOG.info("UnGbanned %s", str(user_id))
 
