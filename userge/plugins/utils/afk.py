@@ -47,7 +47,7 @@ async def active_afk(message: Message) -> None:
     REASON = message.input_str
     await asyncio.gather(
         CHANNEL.log(f"You went AFK! : `{REASON}`"),
-        message.edit("`FRISKY telah AFK!`", del_in=1000),
+        message.edit("FRISKY **AFK!**", del_in=1000),
         AFK_COLLECTION.drop(),
         SAVED_SETTINGS.update_one(
             {"_id": "AFK"},
@@ -89,7 +89,7 @@ async def handle_afk_incomming(message: Message) -> None:
         if not (USERS[user_id][0] + USERS[user_id][1]) % randint(2, 4):
             if REASON:
                 out_str = (
-                    f"Frisky masih **AFK**.\nAlasan: <code>{REASON}</code>\n"
+                    f"Frisky **AFK**.\nAlasan: <code>{REASON}</code>\n"
                     f"Terakhir dilihat: `{afk_time} yang lalu`"
                 )
             else:
@@ -102,7 +102,7 @@ async def handle_afk_incomming(message: Message) -> None:
     else:
         if REASON:
             out_str = (
-                f"Frisky sedang **AFK** sekarang,tunggulah nanti.\nAlasan: <code>{REASON}</code>\n"
+                f"Frisky **AFK!**.\nAlasan: <code>{REASON}</code>\n"
                 f"Terakhir dilihat: `{afk_time} yang lalu`"
             )
         else:
@@ -149,7 +149,7 @@ async def handle_afk_outgoing(message: Message) -> None:
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
-    replied: Message = await message.reply("`I'm no longer AFK!`", log=__name__)
+    replied: Message = await message.reply("**Frisky kembali!**", log=__name__)
     coro_list = []
     if USERS:
         p_msg = ""
@@ -165,7 +165,7 @@ async def handle_afk_outgoing(message: Message) -> None:
                 g_count += gcount
         coro_list.append(
             replied.edit(
-                f"`Kamu menerima {p_count + g_count} pesan jetika kamu tidak ada. "
+                f"`Kamu menerima {p_count + g_count} pesan ketika kamu tidak ada. "
                 f"Periksa log untuk detail informasi.`\n\n**waktu AFK** : __{afk_time}__",
                 del_in=3,
             )
