@@ -319,11 +319,14 @@ async def mute_usr(message: Message):
     minutes = flags.get("-m", 0)
     hours = flags.get("-h", 0)
     days = flags.get("-d", 0)
-    await message.edit("`Trying to Mute User.. Hang on!! ⏳`")
+    await message.edit("`Sedang mencoba membisukan pengguna ini!`")
+    await message.edit("`proses.`")
+    await message.edit("`proses..`")
+    await message.edit("`proses...`")
     user_id, reason = message.extract_user_and_text
     if not user_id:
         await message.edit(
-            text="`no valid user_id or message specified,`"
+            text="`ID pengguna tidak valid,Silahkan balas ke pengguna!,`"
             "`do .help mute for more info`",
             del_in=5,
         )
@@ -344,25 +347,25 @@ async def mute_usr(message: Message):
                 chat_id, user_id, ChatPermissions(), int(time.time() + mute_period)
             )
             await message.edit(
-                "#MUTE\n\n"
-                f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
+                "#Dibisukan\n\n"
+                f"Pengguna: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
                 f"(`{get_mem.user.id}`)\n"
-                f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
-                f"MUTE UNTIL: `{_time}`\n"
-                f"REASON: `{reason}`",
+                f"Group: `{message.chat.title}` (`{chat_id}`)\n"
+                f"Dibisukan sampai: `{_time}`\n"
+                f"Alasan: `{reason}`",
                 log=__name__,
             )
         except UsernameInvalid:
             await message.edit(
-                "`invalid username, try again with valid info ⚠`", del_in=5
+                "`Nama pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except PeerIdInvalid:
             await message.edit(
-                "`invalid username or userid, try again with valid info ⚠`", del_in=5
+                "`Nama pengguna atau ID pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except UserIdInvalid:
             await message.edit(
-                "`invalid userid, try again with valid info ⚠`", del_in=5
+                "`ID pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except Exception as e_f:
             await message.edit(
@@ -377,25 +380,25 @@ async def mute_usr(message: Message):
                 chat_id, user_id, ChatPermissions()
             )
             await message.edit(
-                "#MUTE\n\n"
-                f"USER: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
+                "#Dibisukan\n\n"
+                f"Pengguna: [{get_mem.user.first_name}](tg://user?id={get_mem.user.id}) "
                 f"(`{get_mem.user.id}`)\n"
-                f"CHAT: `{message.chat.title}` (`{chat_id}`)\n"
-                f"MUTE UNTIL: `forever`\n"
-                f"REASON: `{reason}`",
+                f"Group: `{message.chat.title}` (`{chat_id}`)\n"
+                f"Dibisukan sampai: `forever`\n"
+                f"Alasan: `{reason}`",
                 log=__name__,
             )
         except UsernameInvalid:
             await message.edit(
-                "`invalid username, try again with valid info ⚠`", del_in=5
+                "`Nama pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except PeerIdInvalid:
             await message.edit(
-                "`invalid username or userid, try again with valid info ⚠`", del_in=5
+                "`Nama pengguna atau ID pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except UserIdInvalid:
             await message.edit(
-                "`invalid userid, try again with valid info ⚠`", del_in=5
+                "`ID pengguna tidak valid, coba lagi kembali dengan info yang valid!!`", del_in=5
             )
         except Exception as e_f:
             await message.edit(
