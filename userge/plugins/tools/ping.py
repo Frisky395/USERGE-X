@@ -10,6 +10,7 @@ import asyncio
 from datetime import datetime
 
 from userge import Message, userge
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 
 @userge.on_cmd(
@@ -38,4 +39,15 @@ async def pingme(message: Message):
         await message.edit("`....`")
         end = datetime.now()
         m_s = (end - start).microseconds / 1000
-        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`\n**ᴜᴘᴛɪᴍᴇ :** `{userge.uptime}`\n**ᴍᴀsᴛᴇʀ :** `Frisky`")
+        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`")
+
+
+    @staticmethod
+    def ping_buttons():
+        buttons = [
+            [
+                InlineKeyboardButton(text="  UPTIME", =(uptime{userge.uptime}),
+            ]
+        ]
+        return InlineKeyboardMarkup(buttons)
+   }
