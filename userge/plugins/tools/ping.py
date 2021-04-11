@@ -8,9 +8,8 @@
 
 import asyncio
 from datetime import datetime
-
-from userge import Message, userge
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from userge import Message, userge
 
 
 @userge.on_cmd(
@@ -39,15 +38,15 @@ async def pingme(message: Message):
         await message.edit("`....`")
         end = datetime.now()
         m_s = (end - start).microseconds / 1000
-        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`")
+        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`\n**ᴜᴘᴛɪᴍᴇ :** `{userge.uptime}`\n**ᴍᴀsᴛᴇʀ :** `Frisky`")
 
 
     @staticmethod
-    def ping_buttons():
+    def alive_buttons():
         buttons = [
             [
-                InlineKeyboardButton(text="  OWNER", = ("https://t.me/lubego666")
+                InlineKeyboardButton(text="  SETTINGS", callback_data="settings_btn"),
+                InlineKeyboardButton(text="  REPO", url=Config.UPSTREAM_REPO),
             ]
         ]
         return InlineKeyboardMarkup(buttons)
-   }
