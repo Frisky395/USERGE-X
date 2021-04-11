@@ -35,12 +35,6 @@ async def pingme(message: Message):
         m_s = round((t_m_s - 0.6) / 3, 3)
         await message.edit(f"**⚡Average Pong⚡**\n`{m_s} ms`")
     else:
-        await message.edit("`....`")
-        end = datetime.now()
-        m_s = (end - start).microseconds / 1000
-        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`\n**ᴜᴘᴛɪᴍᴇ :** `{userge.uptime}`\n**ᴍᴀsᴛᴇʀ :** `Frisky`")
-
-
     @staticmethod
     def ping_buttons()  -> InlineKeyboardMarkup:
         buttons = [
@@ -50,3 +44,7 @@ async def pingme(message: Message):
             ]
         ]
         return InlineKeyboardMarkup(buttons)
+        await message.edit("`....`")
+        end = datetime.now()
+        m_s = (end - start).microseconds / 1000
+        await message.edit(f"**ᴘɪɴɢ :** `{m_s} ms`\n**ᴜᴘᴛɪᴍᴇ :** `{userge.uptime}`\n**ᴍᴀsᴛᴇʀ :** `Frisky`")
