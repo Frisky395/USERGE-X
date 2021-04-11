@@ -46,7 +46,7 @@ async def pingme(message: Message):
     def ping_buttons():
         buttons = [
             [
-                InlineKeyboardButton(text="  UPTIME", ="{userge.uptime}),
+                InlineKeyboardButton(text="  OWNER", =https://t.me/lubego666"),
             ]
         ]
         return InlineKeyboardMarkup(buttons)
