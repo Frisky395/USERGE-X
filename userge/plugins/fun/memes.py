@@ -98,19 +98,19 @@ async def facepalm_(message: Message):
     await check_and_send(message, "🤦‍♂")
 
 
-@userge.on_cmd("p$", about={"header": "Facepalm :P"})
+@userge.on_cmd("p$", about={"header": "BERI SALAM"})
 async def p_(message: Message):
     """Beri salam"""
     await check_and_send(message, "`Assalamu'alaikum`")
 
 
-@userge.on_cmd("string$", about={"header": "Facepalm :P"})
+@userge.on_cmd("string$", about={"header": "BUAT STRING PYROGRAM"})
 async def string_(message: Message):
     """Buat ambil string pyrogram"""
     await check_and_send(message, "https://replit.com/@ijustlearn/stringsessiongen#main.py")
 
 
-@userge.on_cmd("l$", about={"header": "Facepalm :P"})
+@userge.on_cmd("l$", about={"header": "JAWAB SALAM"})
 async def l_(message: Message):
     """Jawab salam"""
     await check_and_send(message, "`Wa'alaikumussalam`")
