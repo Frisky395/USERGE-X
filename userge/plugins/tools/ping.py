@@ -42,7 +42,7 @@ async def pingme(message: Message):
 
 
     @staticmethod
-    def alive_buttons():
+    def ping_buttons()  -> InlineKeyboardMarkup:
         buttons = [
             [
                 InlineKeyboardButton(text="  SETTINGS", callback_data="settings_btn"),
